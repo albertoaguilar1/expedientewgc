@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import expedientewebgc.chedraui.com.cliente.Cliente;
 import expedientewebgc.chedraui.com.cliente.Correo;
 import expedientewebgc.chedraui.com.cliente.Monedero;
-import expedientewebgc.com.cliente.msj.Mensaje;
+import expedientewebgc.chedraui.com.cliente.Mensaje;
+
 import io.swagger.annotations.ApiOperation;
 
 @Controller

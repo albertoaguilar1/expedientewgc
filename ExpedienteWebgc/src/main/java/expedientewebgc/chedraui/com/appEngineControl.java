@@ -13,18 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import expedientewebgc.chedraui.com.cliente.Cliente;
 import expedientewebgc.chedraui.com.cliente.Correo;
 import expedientewebgc.chedraui.com.cliente.Monedero;
-import expedientewebgc.com.cliente.msj.Mensaje;
-
-
-
+import expedientewebgc.chedraui.com.cliente.Mensaje;
+import io.swagger.annotations.ApiOperation;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("/api")
+@RequestMapping(path = {"/", "/api/" + appEngineControl.MODULO})
 public class appEngineControl {
 		
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());		
 
+	public static final String MODULO = "expediente";
+	
+	
 		public static void main(String[] args) {
 			SpringApplication.run(appEngineControl.class, args);
 		}
@@ -47,10 +48,14 @@ public class appEngineControl {
 	 * @param correo 
 	 * @param password
 	 */
-
-	@RequestMapping(path = "/consultaCorreo",
-	method = RequestMethod.GET,
-	produces = MediaType.APPLICATION_JSON_VALUE)
+	
+	    @ApiOperation(
+	            value = "Operacion que realiza el registro del cliente desde el aplicativo solicitante.",
+	            httpMethod = "GET",
+	            produces = MediaType.APPLICATION_JSON_VALUE)	    
+		@RequestMapping(path = "consultaCorreo",
+				method = {RequestMethod.GET},
+				produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Mensaje consultaCorreo(@RequestParam(name = "correo") String correo, @RequestParam(name = "password") String password){
 		Mensaje response = new Mensaje();
 		
@@ -106,6 +111,7 @@ public class appEngineControl {
 		}else {
 		response = null;
 		logger.trace("Tiempo total[" + (System.currentTimeMillis() - inicio) + "]");
+		
 		}
 		
 		logger.info("Tiempo total[" + (System.currentTimeMillis() - inicio) + "]");
@@ -116,7 +122,16 @@ public class appEngineControl {
 	
 	
 	
-	
+		/**
+		 * Operacion de busqueda cliente por correo  y password.
+		 * @param correo 
+		 * @param password
+		 */
+		
+		    @ApiOperation(
+		            value = "Operacion que realiza el registro del cliente desde el aplicativo solicitante.",
+		            httpMethod = "GET",
+		            produces = MediaType.APPLICATION_JSON_VALUE)
 	@RequestMapping(path = "/consultaCorreo2",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
