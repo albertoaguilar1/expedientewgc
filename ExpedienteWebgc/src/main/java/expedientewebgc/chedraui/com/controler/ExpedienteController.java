@@ -32,8 +32,6 @@ produces = MediaType.ALL_VALUE)
         public String hello() {
                 return "Hello Spring Boot with restController, I'm on App Engine!!!";
         }
-
-
 	
 	// writeValueAsString
 	
